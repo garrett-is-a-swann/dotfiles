@@ -80,7 +80,7 @@ nnoremap <C-L> <C-W><C-L>
 "#################################################
 
 "No top toolbar
-"set guioptions -=T
+set guioptions -=T
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -199,11 +199,19 @@ endif
 
 
 "###############################################
+" Marcos                                       "
+"###############################################
+
+let @m = "CXX=g++\nFLAGS=-g -std=c++11 -Wall -W\nPROG=\n\n$(PROG): main.o thing1.o thing2.o\n\t$(CXX) $(FLAGS) -o $(PROG) main.o thing1.o thing2.o\n\nthing1.o: thing1.cpp thing1.h\n\t$(CXX) $(FLAGS) -c thing1.cpp\n\nthing2.o: thing2.cpp thing2.h thing1.h\n\t$(CXX) $(FLAGS) -c thing2.cpp\n\nmain.o: main.cpp thing1.h thing2.h\n\t$(CXX) $(FLAGS) -c main.cpp\n\nclean: \n\trm *.o $(PROG)"
+
+
+"###############################################
 " Other Stuff                                  "
 "###############################################
 
 "For Vim.Pathogen
 execute pathogen#infect()
 "set term=builtin_beos-ansi
+au BufRead,BufNewFile *.gpl    set filetype=gpl
 filetype plugin indent on
 syntax on
