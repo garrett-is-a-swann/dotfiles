@@ -10,7 +10,7 @@ git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
 #Install vim.supertab 
     # Tab completion for vim.
-git clone https://github.com/ervandew/supertab.git ~/.vim/bundle/nerdtree
+git clone https://github.com/ervandew/supertab.git ~/.vim/bundle/supertab
 
 #Install vim.UndoTree
     # UI for Undo Tree (as in 'control-z' kind of undo)
