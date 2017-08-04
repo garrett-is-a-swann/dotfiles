@@ -84,7 +84,12 @@ nnoremap <S-k> gt
 "#################################################
 
 "No top toolbar
-set guioptions -=T
+try
+    set guioptions -=T
+catch
+    "lol
+endtry
+
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
