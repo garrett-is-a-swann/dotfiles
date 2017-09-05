@@ -169,7 +169,7 @@ nnoremap <C-m> :call TNumberToggle()<cr>
 
 
 "###############################################
-" For copy/pasting. Uncomment based on your OS "
+" Toggle plugins                               "
 "###############################################
 
 " F5 to toggle UndoTree Plugin
@@ -185,26 +185,33 @@ nmap <F8> :TagbarToggle<CR>
 map <leader>pp :setlocal paste!<cr>
 
 
-if has('macunix')
-    "######### LINUX WITH XCLIP ########
-    " shift-(y)oink  to (y)oink  to   clipboard (On Mac)
-    vnoremap <s-y> :w !pbcopy<cr><cr>
-    " shift (p)loink to (p)loink from clipboard (On Mac)
-    nnoremap <s-p> :r !pbpaste<cr>
+"###############################################
+" For copy/pasting. Uncomment based on your OS "
+"###############################################
 
-else
-    "######### LINUX WITH XCLIP ########
-    " shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xclip)
-    vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
-    " shift (p)loink to (p)loink from clipboard (On Linux w/ xclip)
-    nnoremap <s-p> :r !xclip -o -sel -c<cr>
+vnoremap <s-y> "+y
+nnoremap <s-p> "+p
 
-    "######### LINUX WITH XSEL #########
-    " shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xsel)
-    "vnoremap <s-y> :w !xsel -i -b<cr><cr>
-    " shift (p)loink to (p)loink from clipboard (On Linux w/ xsel)
-    "nnoremap <s-p> :r !xsel -o -b<cr>
-endif
+"if has('macunix')
+    ""######### LINUX WITH XCLIP ########
+    "" shift-(y)oink  to (y)oink  to   clipboard (On Mac)
+    "vnoremap <s-y> :w !pbcopy<cr><cr>
+    "" shift (p)loink to (p)loink from clipboard (On Mac)
+    "nnoremap <s-p> :r !pbpaste<cr>
+"
+"else
+    ""######### LINUX WITH XCLIP ########
+    "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xclip)
+    "vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
+    "" shift (p)loink to (p)loink from clipboard (On Linux w/ xclip)
+    "nnoremap <s-p> :r !xclip -o -sel -c<cr>
+
+    ""######### LINUX WITH XSEL #########
+    "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xsel)
+    ""vnoremap <s-y> :w !xsel -i -b<cr><cr>
+    "" shift (p)loink to (p)loink from clipboard (On Linux w/ xsel)
+    ""nnoremap <s-p> :r !xsel -o -b<cr>
+"endif
 
 
 "###############################################
