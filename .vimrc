@@ -189,29 +189,29 @@ map <leader>pp :setlocal paste!<cr>
 " For copy/pasting. Uncomment based on your OS "
 "###############################################
 
-vnoremap <s-y> "+y
-nnoremap <s-p> "+p
+"vnoremap <s-y> "+y
+"nnoremap <s-p> "+p
 
-"if has('macunix')
+if has('macunix')
     ""######### LINUX WITH XCLIP ########
     "" shift-(y)oink  to (y)oink  to   clipboard (On Mac)
     "vnoremap <s-y> :w !pbcopy<cr><cr>
     "" shift (p)loink to (p)loink from clipboard (On Mac)
     "nnoremap <s-p> :r !pbpaste<cr>
 "
-"else
+else
     ""######### LINUX WITH XCLIP ########
     "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xclip)
-    "vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
+    vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
     "" shift (p)loink to (p)loink from clipboard (On Linux w/ xclip)
-    "nnoremap <s-p> :r !xclip -o -sel -c<cr>
+    nnoremap <s-p> :r !xclip -o -sel -c<cr>
 
     ""######### LINUX WITH XSEL #########
     "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xsel)
     ""vnoremap <s-y> :w !xsel -i -b<cr><cr>
     "" shift (p)loink to (p)loink from clipboard (On Linux w/ xsel)
     ""nnoremap <s-p> :r !xsel -o -b<cr>
-"endif
+endif
 
 
 "###############################################
