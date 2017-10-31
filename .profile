@@ -22,3 +22,21 @@ export PATH=~/.npm-global/bin:$PATH
 
 PATH=".:$PATH"
 export FORMAT="\nID\t{{.ID}}\nIMAGE\t{{.Image}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.RunningFor}}\nSTATUS\t{{.Status}}\nPORTS\t{{.Ports}}\nNAMES\t{{.Names}}\n"
+
+
+
+function solo(){
+    unset GIT_COMMITTER_NAME
+    unset GIT_COMMITTER_EMAIL
+}
+
+#pair_up "garrett-is-a-swann" "your@email" && git commit
+function pair_up(){
+    export GIT_COMMITTER_NAME=$1
+    export GIT_COMMITTER_EMAIL=$2
+}
+
+# execute commands in a .vim_workspace to generate your default workspace and save time.
+# Example:
+#   e server.js | tabnew server/routes/api.js | tabnew src/app/app.component.ts | split src/app/app.component.html | tabnew src/app/app.module.ts
+alias wsvim='vim -c "$(< .vim_workspace)"'
