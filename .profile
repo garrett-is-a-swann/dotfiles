@@ -40,3 +40,4 @@ function pair_up(){
 # Example:
 #   e server.js | tabnew server/routes/api.js | tabnew src/app/app.component.ts | split src/app/app.component.html | tabnew src/app/app.module.ts
 alias wsvim='vim -c "$(< .vim_workspace)"'
+alias pconn='psql -h localhost -p 5432 -d core -U admin'
