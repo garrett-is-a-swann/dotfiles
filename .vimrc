@@ -4,6 +4,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
 endtry
 
+
 set number
 set rnu
 set nocompatible
@@ -11,6 +12,8 @@ set nocompatible
 "if your backspace doesn't work, you need: 
 set backspace=2
 
+"Auto cd into dir of open file
+set autochdir
 
 " 1 tab == 4 spaces
 set shiftwidth=4
@@ -111,6 +114,44 @@ set splitbelow
 set splitright
 
 
+set tabline=%!MyTabLine()
+
+function MyTabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    " select the highlighting
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T' 
+
+    " the label is made by MyTabLabel()
+    let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  endfor
+
+  " after the last tab fill with TabLineFill and reset tab page nr
+  let s .= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  if tabpagenr('$') > 1 
+    let s .= '%=%#TabLine#%999Xclose'
+  endif
+
+  return s
+endfunction
+
+function MyTabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let label =  bufname(buflist[winnr - 1]) 
+  return fnamemodify(label, ":t") 
+endfunction
+
+
 "#################################################
 " Searching Options
 "#################################################
@@ -189,8 +230,9 @@ map <leader>pp :setlocal paste!<cr>
 " For copy/pasting. Uncomment based on your OS "
 "###############################################
 
-"vnoremap <s-y> "+y
-"nnoremap <s-p> "+p
+vnoremap <s-y> y :redir! > ~/.vimbuffer <bar> echon @* <bar> redir END <CR> <CR>
+vnoremap <s-p> :'<,'>!cat ~/.vimbuffer<CR>
+nnoremap <s-p> :r ~/.vimbuffer<CR>
 
 if has('macunix')
     ""######### LINUX WITH XCLIP ########
@@ -202,9 +244,9 @@ if has('macunix')
 else
     ""######### LINUX WITH XCLIP ########
     "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xclip)
-    vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
+    "vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
     "" shift (p)loink to (p)loink from clipboard (On Linux w/ xclip)
-    nnoremap <s-p> :r !xclip -o -sel -c<cr>
+    "nnoremap <s-p> :r !xclip -o -sel -c<cr>
 
     ""######### LINUX WITH XSEL #########
     "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xsel)
