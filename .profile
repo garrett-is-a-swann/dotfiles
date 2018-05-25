@@ -75,7 +75,10 @@ alias memes='memes'
 
 alias wsvim='vim -c "$(< .vim_workspace)"'
 alias dps='docker ps --format=$FORMAT'
+alias sa='screen -dRR $1'
+alias sls='screen -ls'
 alias dconn='docker_conn $1'
 alias pconn='pconn_func'
 alias sound='alsamixer'
 alias wwwpg='~/codeplay/www/node_modules/.bin/sequelize'
+
