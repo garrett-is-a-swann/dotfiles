@@ -116,7 +116,7 @@ set splitright
 
 set tabline=%!MyTabLine()
 
-function MyTabLine()
+function! MyTabLine()
   let s = ''
   for i in range(tabpagenr('$'))
     " select the highlighting
@@ -144,7 +144,7 @@ function MyTabLine()
   return s
 endfunction
 
-function MyTabLabel(n)
+function! MyTabLabel(n)
   let buflist = tabpagebuflist(a:n)
   let winnr = tabpagewinnr(a:n)
   let label =  bufname(buflist[winnr - 1]) 
@@ -230,9 +230,12 @@ map <leader>pp :setlocal paste!<cr>
 " For copy/pasting. Uncomment based on your OS "
 "###############################################
 
+
 vnoremap <s-y> y :redir! > ~/.vimbuffer <bar> echon @* <bar> redir END <CR> <CR>
 vnoremap <s-p> :'<,'>!cat ~/.vimbuffer<CR>
 nnoremap <s-p> :r ~/.vimbuffer<CR>
+
+
 
 if has('macunix')
     ""######### LINUX WITH XCLIP ########
@@ -263,6 +266,12 @@ endif
 
 " Basic makefile. lol
 let @m = "CXX=g++\nFLAGS=-g -std=c++11 -Wall -W\nPROG=\n\n$(PROG): main.o thing1.o thing2.o\n\t$(CXX) $(FLAGS) -o $(PROG) main.o thing1.o thing2.o\n\nthing1.o: thing1.cpp thing1.h\n\t$(CXX) $(FLAGS) -c thing1.cpp\n\nthing2.o: thing2.cpp thing2.h thing1.h\n\t$(CXX) $(FLAGS) -c thing2.cpp\n\nmain.o: main.cpp thing1.h thing2.h\n\t$(CXX) $(FLAGS) -c main.cpp\n\nclean: \n\trm *.o $(PROG)"
+
+
+" Dump the date for dating files.
+vnoremap <s-d> c<esc>:exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
+nnoremap <s-d> :exe 'norm i' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
+nnoremap [<s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 
 
 "###############################################
