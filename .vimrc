@@ -270,8 +270,8 @@ let @m = "CXX=g++\nFLAGS=-g -std=c++11 -Wall -W\nPROG=\n\n$(PROG): main.o thing1
 
 " Dump the date for dating files.
 vnoremap <s-d> c<esc>:exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
-nnoremap <s-d> :exe 'norm i' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
-nnoremap [<s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
+nnoremap [<s-d> :exe 'norm i' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
+nnoremap <s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 
 
 "###############################################
