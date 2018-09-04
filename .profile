@@ -81,4 +81,10 @@ alias dconn='docker_conn $1'
 alias pconn='pconn_func'
 alias sound='alsamixer'
 alias wwwpg='~/codeplay/www/node_modules/.bin/sequelize'
-
+function pd() {
+    if [ "$1" = "" ]; then
+        popd
+    else
+        pushd $1
+    fi
+}

@@ -276,3 +276,4 @@ bind -r p next-window     # select next window
 bind -r C-h previous-window # select previous window
 bind-key '"' choose-window
 bind-key "'" choose-session
+set-option repeat-time 200
