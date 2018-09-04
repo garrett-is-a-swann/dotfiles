@@ -271,9 +271,13 @@ tmux_conf_copy_to_os_clipboard=false
 # Overides
 
 bind | split-window -h
-bind -r n previous-window # select previous window
-bind -r p next-window     # select next window
+bind -r p previous-window # select previous window
+bind -r n next-window     # select next window
 bind -r C-h previous-window # select previous window
+bind h select-pane -L  # move left  WITHOUT REPEATABLE
+bind j select-pane -D  # move down  WITHOUT REPEATABLE
+bind k select-pane -U  # move up    WITHOUT REPEATABLE
+bind l select-pane -R  # move right WITHOUT REPEATABLE
 bind-key '"' choose-window
 bind-key "'" choose-session
 set-option repeat-time 200
