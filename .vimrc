@@ -253,7 +253,6 @@ vnoremap <s-d> c<esc>:exe 'silent norm a' . system("printf $(date '+\%Y/\%m/\%d'
 nnoremap <s-d> :exe 'norm i' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 nnoremap [<s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 
-
 "###############################################
 " Other Stuff                                  "
 "###############################################

@@ -59,14 +59,22 @@ alias wsvim='vim -c "$(< .vim_workspace)"'
 alias dps='docker ps --format=$FORMAT'
 alias sa='screen -dRR $1'
 alias sls='screen -ls'
+alias ta='tmux new-session -A -s $1'
+alias tls='tmux ls'
 alias dconn='docker_conn $1'
 alias pconn='pconn_func'
 alias sound='alsamixer'
 alias wwwpg='~/codeplay/www/node_modules/.bin/sequelize'
-
 function force() {
     path=$(sed 's/ -.*//' <<< $*);
     attr=$(sed 's/[^-]*//' <<< $*)
     echo "sfdx force:$(sed -re 's/ /:/g' <<< $path) $attr"
     sfdx force:$(sed -re 's/ /:/g' <<< $path) $attr
+}
+function pd() {
+    if [ "$1" = "" ]; then
+        popd
+    else
+        pushd $1
+    fi
 }
