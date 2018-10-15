@@ -18,10 +18,8 @@
 #fi
 
 # set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-export PATH=~/.npm-global/bin:$PATH
+export PATH=".:$HOME/bin:$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
 
-PATH=".:$PATH"
 export FORMAT="\nID\t{{.ID}}\nIMAGE\t{{.Image}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.RunningFor}}\nSTATUS\t{{.Status}}\nPORTS\t{{.Ports}}\nNAMES\t{{.Names}}\n"
 
 export EDITOR="/usr/bin/vim"
@@ -36,20 +34,6 @@ function pair_up(){
     export GIT_COMMITTER_NAME=$1
     export GIT_COMMITTER_EMAIL=$2
 }
-
-function sean_commit(){
-    if [ $# -eq 0 ]
-    then
-        echo "Send in with commit message"
-        exit 1
-    fi
-    export GIT_COMMITTER_NAME="garrett-is-a-swann"
-    export GIT_COMMITTER_EMAIL="sean_pimentel@hotmail.com"
-    git commit -m $!
-    unset GIT_COMMITTER_NAME
-    unset GIT_COMMITTER_EMAIL
-}
-
 
 function pconn_func(){
     while [ -z "$PCONNPASS" ]; do
@@ -71,8 +55,6 @@ function docker_conn(){
     docker exec -it $1 bash
 }
 
-alias memes='memes'
-
 alias wsvim='vim -c "$(< .vim_workspace)"'
 alias dps='docker ps --format=$FORMAT'
 alias sa='screen -dRR $1'
@@ -83,6 +65,12 @@ alias dconn='docker_conn $1'
 alias pconn='pconn_func'
 alias sound='alsamixer'
 alias wwwpg='~/codeplay/www/node_modules/.bin/sequelize'
+function force() {
+    path=$(sed 's/ -.*//' <<< $*);
+    attr=$(sed 's/[^-]*//' <<< $*)
+    echo "sfdx force:$(sed -re 's/ /:/g' <<< $path) $attr"
+    sfdx force:$(sed -re 's/ /:/g' <<< $path) $attr
+}
 function pd() {
     if [ "$1" = "" ]; then
         popd

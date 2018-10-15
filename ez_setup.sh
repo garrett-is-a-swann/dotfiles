@@ -34,6 +34,12 @@ do
                 # Depends on http://ctags.sourceforge.net/
             git clone https://github.com/majutsushi/tagbar.git ~/.vim/bundle/tagbar
             ;;
+        --profile)
+            echo "source ~/.profile" >> ~/.bash_profile
+            source ~/.bash_profile
+            ;;
+    esac
+    case $param in
         --files|--all)
             #Copy my dotfiles over.
             cp .vimrc ~/.vimrc
@@ -41,10 +47,6 @@ do
             cp .tmux.conf.local ~/.tmux.conf.local
             cp .inputrc ~/.inputrc
             cp .profile ~/.profile
-            ;;
-        --profile)
-            echo "source ~/.profile" >> ~/.bash_profile
-            source ~/.bash_profile
             ;;
     esac
 done

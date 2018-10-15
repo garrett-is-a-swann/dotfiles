@@ -167,7 +167,11 @@ set hlsearch
 set incsearch
 
 "in visual mode, // searches for highlighted values
-vnoremap // y/<C-R>"<CR>
+"OLD:
+"vnoremap // y/<C-R>"<CR> 
+"NEW:
+vnoremap // "zy:let @/="<C-R>z"<CR>
+
 
 
 "#################################################
@@ -203,8 +207,6 @@ function! TNumberToggle()
   endif
 endfunc
 
-"in visual mode, // searches for highlighted values
-vnoremap // y/<C-R>"<CR> 
 nnoremap <C-n> :call NumberToggle()<cr>
 nnoremap <C-m> :call TNumberToggle()<cr>
 
@@ -227,36 +229,12 @@ map <leader>pp :setlocal paste!<cr>
 
 
 "###############################################
-" For copy/pasting. Uncomment based on your OS "
+" For copy/pasting                             "
 "###############################################
 
-
-vnoremap <s-y> y :redir! > ~/.vimbuffer <bar> echon @* <bar> redir END <CR> <CR>
+vnoremap <s-y> y :silent redir! > ~/.vimbuffer <bar> echon @* <bar> redir END <CR> <CR>
 vnoremap <s-p> :'<,'>!cat ~/.vimbuffer<CR>
 nnoremap <s-p> :r ~/.vimbuffer<CR>
-
-
-
-if has('macunix')
-    ""######### LINUX WITH XCLIP ########
-    "" shift-(y)oink  to (y)oink  to   clipboard (On Mac)
-    "vnoremap <s-y> :w !pbcopy<cr><cr>
-    "" shift (p)loink to (p)loink from clipboard (On Mac)
-    "nnoremap <s-p> :r !pbpaste<cr>
-"
-else
-    ""######### LINUX WITH XCLIP ########
-    "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xclip)
-    "vnoremap <s-y> :w !xclip -i -sel c<cr><cr>
-    "" shift (p)loink to (p)loink from clipboard (On Linux w/ xclip)
-    "nnoremap <s-p> :r !xclip -o -sel -c<cr>
-
-    ""######### LINUX WITH XSEL #########
-    "" shift-(y)oink  to (y)oink  to   clipboard (On Linux w/ xsel)
-    ""vnoremap <s-y> :w !xsel -i -b<cr><cr>
-    "" shift (p)loink to (p)loink from clipboard (On Linux w/ xsel)
-    ""nnoremap <s-p> :r !xsel -o -b<cr>
-endif
 
 
 "###############################################
@@ -267,12 +245,13 @@ endif
 " Basic makefile. lol
 let @m = "CXX=g++\nFLAGS=-g -std=c++11 -Wall -W\nPROG=\n\n$(PROG): main.o thing1.o thing2.o\n\t$(CXX) $(FLAGS) -o $(PROG) main.o thing1.o thing2.o\n\nthing1.o: thing1.cpp thing1.h\n\t$(CXX) $(FLAGS) -c thing1.cpp\n\nthing2.o: thing2.cpp thing2.h thing1.h\n\t$(CXX) $(FLAGS) -c thing2.cpp\n\nmain.o: main.cpp thing1.h thing2.h\n\t$(CXX) $(FLAGS) -c main.cpp\n\nclean: \n\trm *.o $(PROG)"
 
+" In visual mode with search 'MatchEnd' -- Bring cursor to end of match
+vnoremap me //e<CR>
 
 " Dump the date for dating files.
-vnoremap <s-d> c<esc>:exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
-nnoremap [<s-d> :exe 'norm i' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
-nnoremap <s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
-
+vnoremap <s-d> c<esc>:exe 'silent norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
+nnoremap <s-d> :exe 'norm i' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
+nnoremap [<s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 
 "###############################################
 " Other Stuff                                  "
