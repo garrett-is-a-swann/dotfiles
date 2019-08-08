@@ -44,6 +44,7 @@ do
             #Copy my dotfiles over.
             cp .vimrc ~/.vimrc
             cp .tmux.conf ~/.tmux.conf
+            cp .tmux.conf.local ~/.tmux.conf.local
             cp .inputrc ~/.inputrc
             cp .profile ~/.profile
             ;;

@@ -72,9 +72,39 @@ function pd() {
         pushd $1
     fi
 }
+
 function force() {
     path=$(sed 's/([^-]*).*/\1/' <<< $*);
     attr=$(sed 's/[^-]*//' <<< $*)
     echo "sfdx force:$(sed -re 's/ /:/g' <<< $path) $attr"
           sfdx force:$(sed -re 's/ /:/g' <<< $path) $attr
+}
+
+colorize()       { echo -e "\e[$(echo "${@:1:$(($#-1))}" | sed 's/ /;/g')m${!#}\e[0m"; }
+
+vls() {
+    ls=$(ls --color=always --group-directories-first)
+
+    col=9999999999
+    str=''
+    i=1
+    for el in $ls; do
+        ccount=$(( $(( $(tput cols) / $(wc -m <<< $el) )) + 1 ))
+        if [ $ccount -lt $col ]; then
+            col=$ccount
+        fi
+    done
+
+    for el in $ls; do
+        if [ -f ".$el.swp" ] || [ -f ".$el.swo" ]; then
+            str="$str$(colorize 4 "*$el") "
+        else 
+            str="$str$el "
+        fi
+        if [ $(( i % $col )) == 0 ] && [ ! $i == 0 ]; then 
+            str="$str\n\n"
+        fi
+        i=$(( i + 1 ))
+    done
+    echo -e $str | column -t
 }
