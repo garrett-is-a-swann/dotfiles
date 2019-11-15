@@ -18,7 +18,7 @@
 #fi
 
 # set PATH so it includes user's private bin directories
-export PATH=".:$HOME/bin:$PATH:$HOME/.local/bin:$HOME/.npm-global/bin"
+export PATH=".:$HOME/bin:$PATH:$HOME/.local/bin:$HOME/.npm-global/bin:./node_modules/.bin"
 
 export FORMAT="\nID\t{{.ID}}\nIMAGE\t{{.Image}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.RunningFor}}\nSTATUS\t{{.Status}}\nPORTS\t{{.Ports}}\nNAMES\t{{.Names}}\n"
 
@@ -108,3 +108,10 @@ vls() {
     done
     echo -e $str | column -t
 }
+
+
+if [ -f "$HOME/bin/.init.sh" ]; then
+    cd "$HOME/bin" && source ".init.sh" 
+    # Clean up, just in case
+    cd $HOME 
+else echo 'cd && git clone git@github.com:garrett-is-a-swann/bin.git'; fi

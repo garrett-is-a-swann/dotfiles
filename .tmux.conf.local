@@ -281,3 +281,9 @@ bind l select-pane -R  # move right WITHOUT REPEATABLE
 bind-key '"' choose-window
 bind-key "'" choose-session
 set-option repeat-time 200
+bind-key -r C-t swap-window -t -1
+bind-key -r C-y swap-window -t +1
+
+# pane movement
+bind-key S choose-window 'join-pane -v -s "%%"'
+bind-key V choose-window 'join-pane -h -s "%%"'
