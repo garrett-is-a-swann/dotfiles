@@ -257,6 +257,11 @@ nnoremap [<s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 " Other Stuff                                  "
 "###############################################
 
+if &term!="xterm"
+    set t_Co=256            " use 256 colors in vim
+    colorscheme desert256   " an appropriate color scheme
+endif
+
 "For Vim.Pathogen
 execute pathogen#infect()
 "set term=builtin_beos-ansi
