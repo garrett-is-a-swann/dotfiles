@@ -1,9 +1,13 @@
 try
-    colorscheme colorsbox-material
+    if &term!="xterm"
+        set t_Co=256            " use 256 colors in vim
+        colorscheme desert256   " an appropriate color scheme
+    else
+        colorscheme colorsbox-material
+    endif
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
 endtry
-
 
 set number
 set rnu
@@ -257,10 +261,6 @@ nnoremap [<s-d> :exe 'norm a' . system("printf $(date '+\%Y/\%m/\%d')")<CR>
 " Other Stuff                                  "
 "###############################################
 
-if &term!="xterm"
-    set t_Co=256            " use 256 colors in vim
-    colorscheme desert256   " an appropriate color scheme
-endif
 
 "For Vim.Pathogen
 execute pathogen#infect()
