@@ -21,7 +21,7 @@ function installVimPlugins() {
 
     for i in $(sed -r 's/ /\n/g' <<< "$vim_plugins"); do
         echo "git clone https://github.com/$i ~/.vim/bundle$(sed -r 's/[^\/]*(.*).git/\1/' <<< $i)"
-        git clone https://github.com/$i ~/.vim/bundle$(sed -r 's/[^\/]*(.*).git/\1/' <<< $i)
+        git clone git@github.com:$i ~/.vim/bundle$(sed -r 's/[^\/]*(.*).git/\1/' <<< $i)
     done
 }
 
